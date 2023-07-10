@@ -1,2 +1,2 @@
 # imagepils
-Repository for hosting imagepils project
+Repository for hosting imagepills project

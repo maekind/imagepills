@@ -7,8 +7,8 @@ import os
 
 from PIL import Image
 from PIL import UnidentifiedImageError
-from imagepils import base
-from imagepils import utils
+from imagepills import base
+from imagepills import utils
 
 __author__ = "Marco Espinosa"
 __email__ = "marco@marcoespinosa.es"
@@ -17,7 +17,7 @@ __version__ = "1.0"
 __type__ = "module"
 
 
-class Size(base.Pil):
+class Size(base.Pill):
     """Class to handle image size calls"""
 
     def __init__(self, name) -> None:
@@ -39,7 +39,7 @@ class Size(base.Pil):
     def __repr__(self) -> str:
         return "Size class"
 
-    def _configure_args(self): # pragma: no cover
+    def _configure_args(self):  # pragma: no cover
         """Method for adding command lines to the base class"""
 
         # Argument to provide an input folder path for recursively showing their sizes.
@@ -103,7 +103,7 @@ class Size(base.Pil):
             print(self.output)
 
 
-class Convert2PNG(base.Pil):
+class Convert2PNG(base.Pill):
     """Class to handle image convertion to PNG"""
 
     def __init__(self, name) -> None:
@@ -121,7 +121,7 @@ class Convert2PNG(base.Pil):
     def __repr__(self) -> str:
         return "Convert2PNG class"
 
-    def _configure_args(self): # pragma: no cover
+    def _configure_args(self):  # pragma: no cover
         """Method for adding command lines to the base class"""
 
         # Argument to provide an input folder path for recursively get the images.
@@ -210,7 +210,7 @@ class Convert2PNG(base.Pil):
         return success, error
 
 
-class Resize(base.Pil):
+class Resize(base.Pill):
     """Class to handle image resizing"""
 
     def __init__(self, name) -> None:
@@ -228,7 +228,7 @@ class Resize(base.Pil):
     def __repr__(self) -> str:
         return "Resize class"
 
-    def _configure_args(self): # pragma: no cover
+    def _configure_args(self):  # pragma: no cover
         """Method for adding command lines to the base class"""
 
         # Argument to provide an input folder path for recursively get the images.

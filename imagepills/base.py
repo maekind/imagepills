@@ -8,11 +8,11 @@ import argparse
 class Arguments(): # pragma: no cover
     """Class to extract command line args"""
 
-    def __init__(self, pil_name) -> None:
+    def __init__(self, pill_name) -> None:
         """Default constructor"""
 
         # parser initialization
-        self.parser = argparse.ArgumentParser(pil_name)
+        self.parser = argparse.ArgumentParser(pill_name)
 
         # This variable contains the command line arguments passed
         self.args = None
@@ -45,13 +45,13 @@ class Arguments(): # pragma: no cover
         """Method fro printing help"""
         self.parser.print_help()
 
-class Pil(Arguments): # pragma: no cover
-    """Base class for pils
+class Pill(Arguments): # pragma: no cover
+    """Base class for pills
     
         This class inherits from the Arguments class in order to handle
         command line arguments.
 
-        Inheritance class from Pil should call super with command string name as follows:
+        Inheritance class from Pill should call super with command string name as follows:
 
         ```python
         super().__init__(command_name)
@@ -73,12 +73,12 @@ class Pil(Arguments): # pragma: no cover
     """
 
     def run(self):
-        """This method handles the execution of the pil.
+        """This method handles the execution of the pill.
         
-            This method has to be overriden for each pil.
+            This method has to be overriden for each pill.
         """
 
         # TODO: This method should read the command line arguments as follows:
         # args = self.parser.parse_args()
 
-        # TODO: Then, we should implement the pil action code.
+        # TODO: Then, we should implement the pill action code.
