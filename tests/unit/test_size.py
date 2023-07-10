@@ -23,7 +23,7 @@ class TestFileSize(BaseTest):
         with mock.patch(
             "sys.argv",
             [
-                "pils_size",
+                "pills_size",
                 "-f",
                 path.join(self.execution_path, "fixtures/image.png"),
                 "-v"
@@ -51,6 +51,7 @@ class TestFilesInFolderSize(BaseTest):
         {'filename': 'image.png', 'width': 2127, 'height': 2127},
         {'filename': 'image2.png', 'width': 256, 'height': 256},
         {'filename': 'image3.png', 'width': 256, 'height': 256},
+        {'filename': 'sample.jpg', 'width': 300, 'height': 300},
     ]
 
     def init_with_mock(self):
@@ -59,7 +60,7 @@ class TestFilesInFolderSize(BaseTest):
         with mock.patch(
             "sys.argv",
             [
-                "pils_size",
+                "pills_size",
                 "-i",
                 path.join(self.execution_path, "fixtures"),
                 "-v"

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """This file contains the base classes for testing"""
-from os import path, mkdir, rmdir, getcwd
+from os import path, mkdir, rmdir, getcwd, remove
 from unittest import TestCase
 from io import StringIO
 import sys
@@ -45,8 +45,9 @@ class Capturing(list):
 
 class BaseTest(TestCase, TestExecutionInfo):
     """Base class for tests"""
-
     expected_result = []
+    fixtures_folder = 'fixtures'
+    image_sample = 'sample.png'
     output_folder = 'output'
     output_results = None
     test_class = None
@@ -55,40 +56,55 @@ class BaseTest(TestCase, TestExecutionInfo):
         """Pre configuration for tests"""
 
         # Create output folder if it does not exist
-        if not path.exists(self.output_folder):
-            mkdir(self.output_folder)
+        if not path.exists(path.join(self.execution_path, self.output_folder)):
+            mkdir(path.join(self.execution_path, self.output_folder))
 
         # Child class initialization (method defined in the children)
         self.init_with_mock()
 
         return super().setUp()
 
-    def check_results(self, results):
+    def check_results(self):
         """Method to check results"""
 
+        # Search for list of results. Other items should be message errors.
+        for output in self.output_results:
+            try:
+                output_results = eval(output)
+                if isinstance(output_results, list):
+                    break
+            except SyntaxError:
+                continue
+
+        # Check for results type.
+        self.assertIsInstance(output_results, list)
+
         # Check same lenght
-        self.assertEqual(len(results), len(self.expected_result))
+        self.assertEqual(len(output_results), len(self.expected_result))
 
-        # Has to be lists
-        self.assertIsInstance(self.expected_result, list)
-        self.assertIsInstance(results, list)
+        # Check same list
+        self.assertListEqual(output_results, self.expected_result)
 
-        # We sort the results once
-        sorted_results = sorted(results)
-        sorted_expected_results = sorted(self.expected_result)
+        # Prepare the output and print results
+        # TODO: Maybe only print when assertion fails
+        output = {
+            'Expected results': self.expected_result,
+            'Results': output_results,
+        }
 
-        # Compare results
-        for index, result in enumerate(sorted_results):
-            self.assertDictEqual(result, sorted_expected_results[index])
-
-        print(f'Expected results: {sorted_expected_results}')
-        print(f'Results: {sorted_results}')
+        print(f'Output: {output}')
 
     def tearDown(self) -> None:
         """Post configuration for tests"""
         # Clean
-        if path.exists(self.output_folder):
-            rmdir(self.output_folder)
+        if path.exists(path.join(self.execution_path, self.output_folder)):
+            rmdir(path.join(self.execution_path, self.output_folder))
+
+        if path.exists(path.join(self.execution_path, self.fixtures_folder, self.image_sample)):
+            remove(path.join(self.execution_path, self.fixtures_folder, self.image_sample))
+
+        # Checking results
+        self.check_results()
 
         return super().tearDown()
 

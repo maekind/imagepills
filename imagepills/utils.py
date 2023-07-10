@@ -42,4 +42,4 @@ def normalize_folder(folder) -> str:
     """
     _folder = folder.rstrip('\\/')
 
-    return _folder if _folder != "." else os.getcwd()
+    return _folder if _folder != "." else os.path.split(os.path.abspath(__file__))[0]
