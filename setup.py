@@ -12,12 +12,12 @@ with open('requirements.txt') as requirements_file:
 
 
 setup(
-    name='imagepils',
+    name='imagepills',
     version='1.0',
-    packages=['imagepils'],
+    packages=['imagepills'],
     author = 'Marco Espinosa',
     author_email = 'marco@marcoespinosa.es',
-    description = 'image pils package',
+    description = 'image pills package',
     classifiers = [
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
@@ -28,9 +28,9 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'pils_size = imagepils.imagepils:size',
-            'pils_image2png = imagepils.imagepils:image2png',
-            'pils_resize = imagepils.imagepils:resize',
+            'pills_size = imagepills.imagepills:size',
+            'pills_image2png = imagepills.imagepills:image2png',
+            'pills_resize = imagepills.imagepills:resize',
         ]
     },
     install_requires=requirements,
