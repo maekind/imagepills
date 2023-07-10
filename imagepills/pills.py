@@ -181,7 +181,7 @@ class Convert2PNG(base.Pill):
                 errors.append(error)
 
         if self.args.verbose:
-            output = {"success": successes, "errors": errors}
+            output = [{"success": successes, "errors": errors}]
             print(f'{output}')
 
     def save_to_png(self, input_file, filename, folder=None):
