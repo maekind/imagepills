@@ -5,7 +5,7 @@
 
 import argparse
 
-class Arguments():
+class Arguments(): # pragma: no cover
     """Class to extract command line args"""
 
     def __init__(self, pil_name) -> None:
@@ -45,7 +45,7 @@ class Arguments():
         """Method fro printing help"""
         self.parser.print_help()
 
-class Pil(Arguments):
+class Pil(Arguments): # pragma: no cover
     """Base class for pils
     
         This class inherits from the Arguments class in order to handle
