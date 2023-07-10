@@ -39,7 +39,7 @@ class Size(base.Pil):
     def __repr__(self) -> str:
         return "Size class"
 
-    def _configure_args(self):
+    def _configure_args(self): # pragma: no cover
         """Method for adding command lines to the base class"""
 
         # Argument to provide an input folder path for recursively showing their sizes.
@@ -121,7 +121,7 @@ class Convert2PNG(base.Pil):
     def __repr__(self) -> str:
         return "Convert2PNG class"
 
-    def _configure_args(self):
+    def _configure_args(self): # pragma: no cover
         """Method for adding command lines to the base class"""
 
         # Argument to provide an input folder path for recursively get the images.
@@ -228,7 +228,7 @@ class Resize(base.Pil):
     def __repr__(self) -> str:
         return "Resize class"
 
-    def _configure_args(self):
+    def _configure_args(self): # pragma: no cover
         """Method for adding command lines to the base class"""
 
         # Argument to provide an input folder path for recursively get the images.
