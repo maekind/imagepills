@@ -173,7 +173,8 @@ class Convert2PNG(base.Pill):
 
         elif self.args.input_file:
             success, error = self.save_to_png(
-                self.args.input_file, self.args.input_file)
+                self.args.input_file, self.args.input_file,
+                self.args.output_folder)
             # Save output:
             if success:
                 successes.append(success)
