@@ -195,7 +195,7 @@ class Convert2PNG(base.Pill):
             img = Image.open(input_file)
 
             if folder:
-                img.save(os.path.join(folder, f"{filename.split('.')[0]}.png"))
+                img.save(os.path.join(folder, f"{os.path.basename(filename).split('.')[0]}.png"))
             else:
                 img.save(f"{filename.split('.')[0]}.png")
 
@@ -232,14 +232,6 @@ class Resize(base.Pill):
     def _configure_args(self):  # pragma: no cover
         """Method for adding command lines to the base class"""
 
-        # Argument to provide an input folder path for recursively get the images.
-        self.add_argument('-i',
-                          '--input_folder',
-                          help="Path to images folder",
-                          dest='input_folder',
-                          metavar='STRING',
-                          required=False)
-
         # Argument to provide an output folder for converted files.
         self.add_argument('-o',
                           '--output_folder',
@@ -255,9 +247,57 @@ class Resize(base.Pill):
                           help="file to convert",
                           dest='input_file',
                           metavar='STRING',
-                          required=False)
+                          required=True)
+
+        # Argument to provide width.
+        self.add_argument('-w',
+                          '--width',
+                          help="new width",
+                          dest='width',
+                          metavar='STRING',
+                          required=True,
+                          type=utils.check_minimum_size)
+
+        # Argument to provide height.
+        self.add_argument('-e',
+                          '--height',
+                          help="new height",
+                          dest='height',
+                          metavar='STRING',
+                          required=True,
+                          type=utils.check_minimum_size)
 
     def run(self):
         """Run method"""
 
-        # TODO: Decide which arguments should be provided and then implement the resize class
+        # ! New width and heigh will be proportional
+        # Ouput initialization
+        successes = []
+        errors = []
+
+        # Open image
+        img = Image.open(self.args.input_file)
+
+        # Get new sizes
+        new_width = self.args.width
+        new_height = self.args.height
+
+        # Check which is the highest size and calculate the other proportionally
+        if self.args.width >= self.args.height:
+            wpercent = new_width/float(img.size[0])
+            new_height = int(float(img.size[1])*float(wpercent))
+        else:
+            wpercent = new_height/float(img.size[1])
+            new_width = int(float(img.size[0])*float(wpercent))
+
+        img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
+
+        img.save(os.path.join(self.args.output_folder,
+                 f"{os.path.basename(self.args.input_file).split('.')[0]}_{new_width}x{new_height}.png"))
+
+        successes.append(os.path.join(self.args.output_folder,
+                                      f"{self.args.input_file.split('.')[0]}_{new_width}x{new_height}.png"))
+
+        if self.args.verbose:
+            output = [{"success": successes, "errors": errors}]
+            print(f'{output}')

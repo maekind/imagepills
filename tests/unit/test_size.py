@@ -49,8 +49,7 @@ class TestFilesInFolderSize(BaseTest):
     # Results initialization
     expected_result = [
         {'filename': 'image.png', 'width': 2127, 'height': 2127},
-        {'filename': 'image2.png', 'width': 256, 'height': 256},
-        {'filename': 'image3.png', 'width': 256, 'height': 256},
+        {'filename': 'image2.png', 'width': 500, 'height': 503},
         {'filename': 'sample.jpg', 'width': 300, 'height': 300},
     ]
 

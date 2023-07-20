@@ -5,6 +5,7 @@
 from os import path, mkdir, rmdir, getcwd, remove
 from unittest import TestCase
 from io import StringIO
+import shutil
 import sys
 
 
@@ -47,7 +48,6 @@ class BaseTest(TestCase, TestExecutionInfo):
     """Base class for tests"""
     expected_result = []
     fixtures_folder = 'fixtures'
-    image_sample = 'sample.png'
     output_folder = 'output'
     output_results = None
     test_class = None
@@ -86,7 +86,7 @@ class BaseTest(TestCase, TestExecutionInfo):
         self.assertListEqual(output_results, self.expected_result)
 
         # Prepare the output and print results
-        # TODO: Maybe only print when assertion fails
+        #  TODO: Maybe only print when assertion fails
         output = {
             'Expected results': self.expected_result,
             'Results': output_results,
@@ -96,12 +96,9 @@ class BaseTest(TestCase, TestExecutionInfo):
 
     def tearDown(self) -> None:
         """Post configuration for tests"""
-        # Clean
+        #  Cleanning: Delete output folder
         if path.exists(path.join(self.execution_path, self.output_folder)):
-            rmdir(path.join(self.execution_path, self.output_folder))
-
-        if path.exists(path.join(self.execution_path, self.fixtures_folder, self.image_sample)):
-            remove(path.join(self.execution_path, self.fixtures_folder, self.image_sample))
+            shutil.rmtree(path.join(self.execution_path, self.output_folder))
 
         # Checking results
         self.check_results()
