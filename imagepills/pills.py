@@ -4,6 +4,7 @@
 """File that contains image tools"""
 
 import os
+import sys
 
 from PIL import Image
 from PIL import UnidentifiedImageError
@@ -67,7 +68,7 @@ class Size(base.Pill):
 
         if not self.args.input_folder and not self.args.input_file:
             self.show_help()
-            return
+            sys.exit(99)
 
         filenames = []
 
@@ -195,7 +196,8 @@ class Convert2PNG(base.Pill):
             img = Image.open(input_file)
 
             if folder:
-                img.save(os.path.join(folder, f"{os.path.basename(filename).split('.')[0]}.png"))
+                img.save(os.path.join(
+                    folder, f"{os.path.basename(filename).split('.')[0]}.png"))
             else:
                 img.save(f"{filename.split('.')[0]}.png")
 

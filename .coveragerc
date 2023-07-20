@@ -2,6 +2,8 @@
 omit =
     imagepills/base.py
     imagepills/entrypoint.py
+    imagepills/imagepills.py
+    setup.py
 
     
 [report]

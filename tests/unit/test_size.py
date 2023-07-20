@@ -9,6 +9,39 @@ from tests.base import Capturing
 from imagepills.pills import Size
 
 
+class TestWithoutArguments(BaseTest):
+    """Tests file size functionality without arguments"""
+
+    def init_with_mock(self):
+        """Method called by the parent to initialize class mocked"""
+        # Mock arguments for size
+        with mock.patch(
+            "sys.argv",
+            [
+                "pills_size"
+            ],
+        ):
+            # Initialize test main class
+            self.test_class = Size("size pill")
+
+    def check_results(self):
+        """Method overriden to handle exception"""
+        pass
+
+    def test_launch(self):
+        """Base method for launching a test
+
+            base_class and arguments have to be initialized in to the child.        
+        """
+        if self.test_class:
+            with Capturing() as self.output_results:
+                try:
+                    # Testing method run
+                    self.test_class.run()
+                except SystemExit as exc:
+                    self.assertEqual(exc.code, 99)
+
+
 class TestFileSize(BaseTest):
     """Tests file size functionality"""
 

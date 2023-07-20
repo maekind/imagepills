@@ -20,11 +20,6 @@ class TestExecutionInfo():
         """execution path property"""
         return path.split(path.abspath(__file__))[0]
 
-    @property
-    def working_directory(self):
-        """working directory property"""
-        return getcwd()
-
 
 class Capturing(list):
     """Class for capturing stdout from a method"""
