@@ -9,13 +9,13 @@ from tests.base import Capturing
 from imagepills.pills import Convert2PNG
 
 
-class Image2PngTestBase():
+class Image2PngTestBase:
     """Base class with common info"""
 
     def test_launch(self):
         """Base method for launching a test
 
-            base_class and arguments have to be initialized in to the child.        
+        base_class and arguments have to be initialized in to the child.
         """
         if self.test_class:
             with Capturing() as self.output_results:
@@ -27,9 +27,7 @@ class TestFileConversion(Image2PngTestBase, BaseTest):
     """Tests file conversion functionality"""
 
     # Results initialization
-    expected_result = [
-        {'success': [], 'errors': []}
-    ]
+    expected_result = [{"success": [], "errors": []}]
 
     def init_with_mock(self):
         """Method called by the parent to initialize class mocked"""
@@ -38,7 +36,7 @@ class TestFileConversion(Image2PngTestBase, BaseTest):
         file_path = path.join(self.execution_path, "fixtures/sample.jpg")
 
         # Update expected results with file path
-        self.expected_result[0]['success'] = [file_path]
+        self.expected_result[0]["success"] = [file_path]
 
         # Mock arguments for size
         with mock.patch(
@@ -49,19 +47,18 @@ class TestFileConversion(Image2PngTestBase, BaseTest):
                 file_path,
                 "-o",
                 path.join(self.execution_path, self.output_folder),
-                "-v"
+                "-v",
             ],
         ):
             # Initialize test main class
             self.test_class = Convert2PNG("convert to png pill")
 
+
 class TestFilesInFolderConversion(Image2PngTestBase, BaseTest):
     """Tests file conversion functionality"""
 
     # Results initialization
-    expected_result = [
-        {'success': [], 'errors': []}
-    ]
+    expected_result = [{"success": [], "errors": []}]
 
     def init_with_mock(self):
         """Method called by the parent to initialize class mocked"""
@@ -70,8 +67,8 @@ class TestFilesInFolderConversion(Image2PngTestBase, BaseTest):
         file_path = path.join(self.execution_path, "fixtures")
 
         # Update expected results with file path
-        self.expected_result[0]['success'] = ['image.png', 'image2.png', 'sample.jpg']
-        self.expected_result[0]['errors'] = ['non_image.jpg']
+        self.expected_result[0]["success"] = ["image.png", "image2.png", "sample.jpg"]
+        self.expected_result[0]["errors"] = ["non_image.jpg"]
 
         # Mock arguments for size
         with mock.patch(
@@ -82,7 +79,7 @@ class TestFilesInFolderConversion(Image2PngTestBase, BaseTest):
                 file_path,
                 "-o",
                 path.join(self.execution_path, self.output_folder),
-                "-v"
+                "-v",
             ],
         ):
             # Initialize test main class
@@ -93,9 +90,7 @@ class TestNonImageFileConversion(Image2PngTestBase, BaseTest):
     """Tests file conversion functionality"""
 
     # Results initialization
-    expected_result = [
-        {'success': [], 'errors': []}
-    ]
+    expected_result = [{"success": [], "errors": []}]
 
     def init_with_mock(self):
         """Method called by the parent to initialize class mocked"""
@@ -104,7 +99,7 @@ class TestNonImageFileConversion(Image2PngTestBase, BaseTest):
         file_path = path.join(self.execution_path, "fixtures/non_image.jpg")
 
         # Update expected results with file path
-        self.expected_result[0]['errors'] = [file_path]
+        self.expected_result[0]["errors"] = [file_path]
 
         # Mock arguments for size
         with mock.patch(
@@ -115,7 +110,7 @@ class TestNonImageFileConversion(Image2PngTestBase, BaseTest):
                 file_path,
                 "-o",
                 path.join(self.execution_path, self.output_folder),
-                "-v"
+                "-v",
             ],
         ):
             # Initialize test main class

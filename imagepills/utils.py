@@ -15,9 +15,9 @@ __type__ = "module"
 def walk(root) -> list:
     """Method to walk throught the given folder
 
-        :param root: root folder
+    :param root: root folder
 
-        :return: list of files
+    :return: list of files
     """
     files = []
     for dirpath, dirnames, filenames in os.walk(root):
@@ -43,17 +43,17 @@ def normalize_folder(folder) -> str:
 
         :return: normalized folder
     """
-    _folder = folder.rstrip('\\/')
+    _folder = folder.rstrip("\\/")
 
     return _folder if _folder != "." else os.path.split(os.path.abspath(__file__))[0]
 
 
 def check_minimum_size(value) -> int:
     """Method to check if the size provided is integer and at least 256
-    
-        :param value: int size. Height or width should be passed as argument.
 
-        :return: int value or raise argsparse.ArgumentTypeError execption
+    :param value: int size. Height or width should be passed as argument.
+
+    :return: int value or raise argsparse.ArgumentTypeError execption
     """
 
     try:

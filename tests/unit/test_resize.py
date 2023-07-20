@@ -10,7 +10,7 @@ from tests.base import Capturing
 from imagepills.pills import Resize
 
 
-class TestResizeWithErrorsBase(BaseTest): # pragma: no cover
+class TestResizeWithErrorsBase(BaseTest):  # pragma: no cover
     """Common task to override check results method"""
 
     def check_results(self):
@@ -20,7 +20,7 @@ class TestResizeWithErrorsBase(BaseTest): # pragma: no cover
     def test_launch(self):
         """Base method for launching a test
 
-            base_class and arguments have to be initialized in to the child.        
+        base_class and arguments have to be initialized in to the child.
         """
         if self.test_class:
             with Capturing() as self.output_results:
@@ -46,15 +46,14 @@ class TestFileResizeBadWidth(TestResizeWithErrorsBase):
                 "123",
                 "-e",
                 "300",
-                "-v"
+                "-v",
             ],
         ):
             try:
                 # Initialize test main class
                 self.test_class = Resize("resize pill")
             except SystemExit as exc:
-                self.assertIsInstance(
-                    exc.__context__, argparse.ArgumentError)
+                self.assertIsInstance(exc.__context__, argparse.ArgumentError)
 
 
 class TestFileResizeBadHeight(TestResizeWithErrorsBase):
@@ -75,15 +74,14 @@ class TestFileResizeBadHeight(TestResizeWithErrorsBase):
                 "400",
                 "-e",
                 "234",
-                "-v"
+                "-v",
             ],
         ):
             try:
                 # Initialize test main class
                 self.test_class = Resize("resize pill")
             except SystemExit as exc:
-                self.assertIsInstance(
-                    exc.__context__, argparse.ArgumentError)
+                self.assertIsInstance(exc.__context__, argparse.ArgumentError)
 
 
 class TestFileResizeInvalidWidth(TestResizeWithErrorsBase):
@@ -104,15 +102,14 @@ class TestFileResizeInvalidWidth(TestResizeWithErrorsBase):
                 "asd1",
                 "-e",
                 "400",
-                "-v"
+                "-v",
             ],
         ):
             try:
                 # Initialize test main class
                 self.test_class = Resize("resize pill")
             except SystemExit as exc:
-                self.assertIsInstance(
-                    exc.__context__, argparse.ArgumentError)
+                self.assertIsInstance(exc.__context__, argparse.ArgumentError)
 
 
 class TestFileResizeInvalidHeigth(TestResizeWithErrorsBase):
@@ -133,24 +130,21 @@ class TestFileResizeInvalidHeigth(TestResizeWithErrorsBase):
                 "400",
                 "-e",
                 "jh123df",
-                "-v"
+                "-v",
             ],
         ):
             try:
                 # Initialize test main class
                 self.test_class = Resize("resize pill")
             except SystemExit as exc:
-                self.assertIsInstance(
-                    exc.__context__, argparse.ArgumentError)
-                
+                self.assertIsInstance(exc.__context__, argparse.ArgumentError)
+
 
 class TestFileResizeWithHeight(BaseTest):
     """Tests file resize funtionalty"""
 
     # Results initialization
-    expected_result = [
-        {'success': [], 'errors': []}
-    ]
+    expected_result = [{"success": [], "errors": []}]
 
     def init_with_mock(self):
         """Method called by the parent to initialize class mocked"""
@@ -158,7 +152,9 @@ class TestFileResizeWithHeight(BaseTest):
         file_path = path.join(self.execution_path, "fixtures", "image2.png")
 
         # Update expected results with file path
-        self.expected_result[0]['success'] = [path.join(self.execution_path, "fixtures", "image2_497x500.png")]
+        self.expected_result[0]["success"] = [
+            path.join(self.execution_path, "fixtures", "image2_497x500.png")
+        ]
 
         # Mock arguments for size
         with mock.patch(
@@ -173,16 +169,16 @@ class TestFileResizeWithHeight(BaseTest):
                 "300",
                 "-e",
                 "500",
-                "-v"
+                "-v",
             ],
         ):
             # Initialize test main class
             self.test_class = Resize("resize pill")
-            
+
     def test_launch(self):
         """Base method for launching a test
 
-            base_class and arguments have to be initialized in to the child.        
+        base_class and arguments have to be initialized in to the child.
         """
         if self.test_class:
             with Capturing() as self.output_results:
@@ -194,9 +190,7 @@ class TestFileResizeWithWidth(BaseTest):
     """Tests file resize funtionalty"""
 
     # Results initialization
-    expected_result = [
-        {'success': [], 'errors': []}
-    ]
+    expected_result = [{"success": [], "errors": []}]
 
     def init_with_mock(self):
         """Method called by the parent to initialize class mocked"""
@@ -204,7 +198,9 @@ class TestFileResizeWithWidth(BaseTest):
         file_path = path.join(self.execution_path, "fixtures", "image2.png")
 
         # Update expected results with file path
-        self.expected_result[0]['success'] = [path.join(self.execution_path, "fixtures", "image2_400x402.png")]
+        self.expected_result[0]["success"] = [
+            path.join(self.execution_path, "fixtures", "image2_400x402.png")
+        ]
 
         # Mock arguments for size
         with mock.patch(
@@ -219,16 +215,16 @@ class TestFileResizeWithWidth(BaseTest):
                 "400",
                 "-e",
                 "300",
-                "-v"
+                "-v",
             ],
         ):
             # Initialize test main class
             self.test_class = Resize("resize pill")
-            
+
     def test_launch(self):
         """Base method for launching a test
 
-            base_class and arguments have to be initialized in to the child.        
+        base_class and arguments have to be initialized in to the child.
         """
         if self.test_class:
             with Capturing() as self.output_results:

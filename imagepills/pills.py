@@ -45,22 +45,22 @@ class Size(base.Pill):
 
         # Argument to provide an input folder path for recursively showing their sizes.
         self.add_argument(
-            '-i',
-            '--input_folder',
+            "-i",
+            "--input_folder",
             help="Path to images folder",
-            dest='input_folder',
-            metavar='STRING',
-            required=False
+            dest="input_folder",
+            metavar="STRING",
+            required=False,
         )
 
         # Argument to provide an input file for showing its size.
         self.add_argument(
-            '-f',
-            '--file',
+            "-f",
+            "--file",
             help="file path",
-            dest='input_file',
-            metavar='STRING',
-            required=False
+            dest="input_file",
+            metavar="STRING",
+            required=False,
         )
 
     def run(self):
@@ -81,23 +81,24 @@ class Size(base.Pill):
             try:
                 img = None
                 if self.args.input_folder:
-                    img = Image.open(os.path.join(
-                        self.args.input_folder, filename))
+                    img = Image.open(os.path.join(self.args.input_folder, filename))
                 else:
                     img = Image.open(filename)
 
                 if img and self.args.verbose:
                     self.output.append(
                         {
-                            'filename': os.path.basename(filename),
-                            'width': img.width,
-                            'height': img.height,
-                        })
+                            "filename": os.path.basename(filename),
+                            "width": img.width,
+                            "height": img.height,
+                        }
+                    )
 
             except (TypeError, UnidentifiedImageError):
                 if filename:
                     print(
-                        f"{filename}: An exception occured when opening the image! Cannot identify image file.")
+                        f"{filename}: An exception occured when opening the image! Cannot identify image file."
+                    )
 
         # Print output
         if self.output:
@@ -126,29 +127,35 @@ class Convert2PNG(base.Pill):
         """Method for adding command lines to the base class"""
 
         # Argument to provide an input folder path for recursively get the images.
-        self.add_argument('-i',
-                          '--input_folder',
-                          help="Path to images folder",
-                          dest='input_folder',
-                          metavar='STRING',
-                          required=False)
+        self.add_argument(
+            "-i",
+            "--input_folder",
+            help="Path to images folder",
+            dest="input_folder",
+            metavar="STRING",
+            required=False,
+        )
 
         # Argument to provide an output folder for converted files.
-        self.add_argument('-o',
-                          '--output_folder',
-                          help="Path to ouput folder",
-                          dest='output_folder',
-                          metavar='STRING',
-                          required=True,
-                          type=utils.normalize_folder)
+        self.add_argument(
+            "-o",
+            "--output_folder",
+            help="Path to ouput folder",
+            dest="output_folder",
+            metavar="STRING",
+            required=True,
+            type=utils.normalize_folder,
+        )
 
         # Argument to provide an input file to convert.
-        self.add_argument('-f',
-                          '--file',
-                          help="file to convert",
-                          dest='input_file',
-                          metavar='STRING',
-                          required=False)
+        self.add_argument(
+            "-f",
+            "--file",
+            help="file to convert",
+            dest="input_file",
+            metavar="STRING",
+            required=False,
+        )
 
     def run(self):
         """Run method"""
@@ -164,7 +171,7 @@ class Convert2PNG(base.Pill):
                 success, error = self.save_to_png(
                     os.path.join(self.args.input_folder, filename),
                     filename,
-                    self.args.output_folder
+                    self.args.output_folder,
                 )
                 # Save output:
                 if success:
@@ -174,8 +181,8 @@ class Convert2PNG(base.Pill):
 
         elif self.args.input_file:
             success, error = self.save_to_png(
-                self.args.input_file, self.args.input_file,
-                self.args.output_folder)
+                self.args.input_file, self.args.input_file, self.args.output_folder
+            )
             # Save output:
             if success:
                 successes.append(success)
@@ -184,7 +191,7 @@ class Convert2PNG(base.Pill):
 
         if self.args.verbose:
             output = [{"success": successes, "errors": errors}]
-            print(f'{output}')
+            print(f"{output}")
 
     def save_to_png(self, input_file, filename, folder=None):
         """Save image in png format"""
@@ -196,8 +203,11 @@ class Convert2PNG(base.Pill):
             img = Image.open(input_file)
 
             if folder:
-                img.save(os.path.join(
-                    folder, f"{os.path.basename(filename).split('.')[0]}.png"))
+                img.save(
+                    os.path.join(
+                        folder, f"{os.path.basename(filename).split('.')[0]}.png"
+                    )
+                )
             else:
                 img.save(f"{filename.split('.')[0]}.png")
 
@@ -206,7 +216,8 @@ class Convert2PNG(base.Pill):
         except (TypeError, UnidentifiedImageError):
             if filename:
                 print(
-                    f"{filename}: An exception occured when opening the image! Cannot identify image file.")
+                    f"{filename}: An exception occured when opening the image! Cannot identify image file."
+                )
 
                 error = filename
 
@@ -235,39 +246,47 @@ class Resize(base.Pill):
         """Method for adding command lines to the base class"""
 
         # Argument to provide an output folder for converted files.
-        self.add_argument('-o',
-                          '--output_folder',
-                          help="Path to ouput folder",
-                          dest='output_folder',
-                          metavar='STRING',
-                          required=True,
-                          type=utils.normalize_folder)
+        self.add_argument(
+            "-o",
+            "--output_folder",
+            help="Path to ouput folder",
+            dest="output_folder",
+            metavar="STRING",
+            required=True,
+            type=utils.normalize_folder,
+        )
 
         # Argument to provide an input file to convert.
-        self.add_argument('-f',
-                          '--file',
-                          help="file to convert",
-                          dest='input_file',
-                          metavar='STRING',
-                          required=True)
+        self.add_argument(
+            "-f",
+            "--file",
+            help="file to convert",
+            dest="input_file",
+            metavar="STRING",
+            required=True,
+        )
 
         # Argument to provide width.
-        self.add_argument('-w',
-                          '--width',
-                          help="new width",
-                          dest='width',
-                          metavar='STRING',
-                          required=True,
-                          type=utils.check_minimum_size)
+        self.add_argument(
+            "-w",
+            "--width",
+            help="new width",
+            dest="width",
+            metavar="STRING",
+            required=True,
+            type=utils.check_minimum_size,
+        )
 
         # Argument to provide height.
-        self.add_argument('-e',
-                          '--height',
-                          help="new height",
-                          dest='height',
-                          metavar='STRING',
-                          required=True,
-                          type=utils.check_minimum_size)
+        self.add_argument(
+            "-e",
+            "--height",
+            help="new height",
+            dest="height",
+            metavar="STRING",
+            required=True,
+            type=utils.check_minimum_size,
+        )
 
     def run(self):
         """Run method"""
@@ -286,20 +305,28 @@ class Resize(base.Pill):
 
         # Check which is the highest size and calculate the other proportionally
         if self.args.width >= self.args.height:
-            wpercent = new_width/float(img.size[0])
-            new_height = int(float(img.size[1])*float(wpercent))
+            wpercent = new_width / float(img.size[0])
+            new_height = int(float(img.size[1]) * float(wpercent))
         else:
-            wpercent = new_height/float(img.size[1])
-            new_width = int(float(img.size[0])*float(wpercent))
+            wpercent = new_height / float(img.size[1])
+            new_width = int(float(img.size[0]) * float(wpercent))
 
         img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
-        img.save(os.path.join(self.args.output_folder,
-                 f"{os.path.basename(self.args.input_file).split('.')[0]}_{new_width}x{new_height}.png"))
+        img.save(
+            os.path.join(
+                self.args.output_folder,
+                f"{os.path.basename(self.args.input_file).split('.')[0]}_{new_width}x{new_height}.png",
+            )
+        )
 
-        successes.append(os.path.join(self.args.output_folder,
-                                      f"{self.args.input_file.split('.')[0]}_{new_width}x{new_height}.png"))
+        successes.append(
+            os.path.join(
+                self.args.output_folder,
+                f"{self.args.input_file.split('.')[0]}_{new_width}x{new_height}.png",
+            )
+        )
 
         if self.args.verbose:
             output = [{"success": successes, "errors": errors}]
-            print(f'{output}')
+            print(f"{output}")

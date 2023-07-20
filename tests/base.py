@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 
 """This file contains the base classes for testing"""
-from os import path, mkdir, rmdir, getcwd, remove
+from os import path, mkdir
 from unittest import TestCase
 from io import StringIO
 import shutil
 import sys
 
 
-class TestExecutionInfo():
+class TestExecutionInfo:
     """Class to provide exetuction information"""
 
     def __init__(self) -> None:
@@ -35,15 +35,16 @@ class Capturing(list):
 
     def __exit__(self, *args):
         self.extend(self._stringio.getvalue().splitlines())
-        del self._stringio    # free up some memory
+        del self._stringio  # free up some memory
         sys.stdout = self._stdout
 
 
 class BaseTest(TestCase, TestExecutionInfo):
     """Base class for tests"""
+
     expected_result = []
-    fixtures_folder = 'fixtures'
-    output_folder = 'output'
+    fixtures_folder = "fixtures"
+    output_folder = "output"
     output_results = None
     test_class = None
 
@@ -83,11 +84,11 @@ class BaseTest(TestCase, TestExecutionInfo):
         # Prepare the output and print results
         #  TODO: Maybe only print when assertion fails
         output = {
-            'Expected results': self.expected_result,
-            'Results': output_results,
+            "Expected results": self.expected_result,
+            "Results": output_results,
         }
 
-        print(f'Output: {output}')
+        print(f"Output: {output}")
 
     def tearDown(self) -> None:
         """Post configuration for tests"""
@@ -102,6 +103,6 @@ class BaseTest(TestCase, TestExecutionInfo):
 
     def init_with_mock(self):
         """Test class initialization with mocked arguments
-        
-            This method should be overriden in the child.
+
+        This method should be overriden in the child.
         """
