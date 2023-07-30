@@ -33,7 +33,6 @@ jobs:
           pipenv run flake8 . --count --max-complexity=11 --max-line-length=120 --statistics
       - name: Test with pytest (with coverage)
         run: |
-          pipenv run python setup.py develop
           pipenv run pytest tests -v --cov=./imagepills --cov-report=xml:./coverage.xml --cov-report term-missing
       - name: Upload code coverage
         uses: codecov/codecov-action@v3
