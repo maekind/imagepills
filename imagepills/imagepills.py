@@ -5,8 +5,7 @@
 
 import functools
 
-from imagepills import entrypoint
-from imagepills import pills
+from imagepills import entrypoint, pills
 
 # Entry points defintionng
 size = functools.partial(entrypoint.size, pills.Size)

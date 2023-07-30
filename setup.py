@@ -3,12 +3,16 @@
 
 """Python packageing entry point."""
 
-from setuptools import setup
 from pkg_resources import parse_requirements
+from setuptools import setup
 
 # Read the requirements from the requirements.txt file
 with open("requirements.txt") as requirements_file:
     requirements = [str(req) for req in parse_requirements(requirements_file)]
+
+# Read the development requirements from the requirements_dev.txt file
+with open("requirements_dev.txt") as requirements_file:
+    requirements_dev = [str(req) for req in parse_requirements(requirements_file)]
 
 
 setup(
@@ -34,4 +38,7 @@ setup(
         ]
     },
     install_requires=requirements,
+    extras_require={
+        'dev': requirements_dev,
+    }
 )

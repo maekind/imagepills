@@ -5,9 +5,9 @@
 import argparse
 from os import path
 from unittest import mock
-from tests.base import BaseTest
-from tests.base import Capturing
+
 from imagepills.pills import Resize
+from tests.base import BaseTest, Capturing
 
 
 class TestResizeWithErrorsBase(BaseTest):  # pragma: no cover

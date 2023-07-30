@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """Utils library module"""
-import os
 import argparse
+import os
 
 __author__ = "Marco Espinosa"
 __email__ = "marco@marcoespinosa.es"
