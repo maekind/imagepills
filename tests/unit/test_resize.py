@@ -153,7 +153,7 @@ class TestFileResizeWithHeight(BaseTest):
 
         # Update expected results with file path
         self.expected_result[0]["success"] = [
-            path.join(self.execution_path, "fixtures", "image2_497x500.png")
+            path.join(self.execution_path, self.output_folder, "image2_497x500.png")
         ]
 
         # Mock arguments for size
@@ -199,7 +199,7 @@ class TestFileResizeWithWidth(BaseTest):
 
         # Update expected results with file path
         self.expected_result[0]["success"] = [
-            path.join(self.execution_path, "fixtures", "image2_400x402.png")
+            path.join(self.execution_path, self.output_folder, "image2_400x402.png")
         ]
 
         # Mock arguments for size

@@ -323,7 +323,7 @@ class Resize(base.Pill):
         successes.append(
             os.path.join(
                 self.args.output_folder,
-                f"{self.args.input_file.split('.')[0]}_{new_width}x{new_height}.png",
+                f"{os.path.basename(self.args.input_file).split('.')[0]}_{new_width}x{new_height}.png",
             )
         )
 
