@@ -3,7 +3,7 @@
 
 """Python packageing entry point."""
 
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 from pkg_resources import parse_requirements
 
 # Read the requirements from the requirements.txt file
@@ -14,7 +14,7 @@ with open("requirements.txt") as requirements_file:
 setup(
     name="imagepills",
     version="1.0",
-    packages=find_packages(),
+    packages=find_namespace_packages(),
     author="Marco Espinosa",
     author_email="marco@marcoespinosa.es",
     description="image pills package",
@@ -34,4 +34,5 @@ setup(
         ]
     },
     install_requires=requirements,
+    include_package_data=True,
 )
