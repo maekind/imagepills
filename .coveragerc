@@ -4,6 +4,8 @@ omit =
     imagepills/entrypoint.py
     imagepills/imagepills.py
     setup.py
+source = 
+    imagepills
 
     
 [report]
