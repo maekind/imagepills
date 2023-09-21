@@ -3,10 +3,12 @@ coverage==7.2.7
 exceptiongroup==1.1.2
 flake8==6.0.0
 iniconfig==2.0.0
+mccabe==0.7.0
 packaging==23.1
 Pillow==9.5.0
 pluggy==1.2.0
 pycodestyle==2.10.0
+pyflakes==3.0.1
 pytest==7.4.0
 pytest-cov==4.1.0
 tomli==2.0.1
