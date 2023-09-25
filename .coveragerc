@@ -1,11 +1,11 @@
 [run]
 omit =
-    imagepills/base.py
-    imagepills/entrypoint.py
-    imagepills/imagepills.py
+    src/imagepills/base.py
+    src/imagepills/entrypoint.py
+    src/imagepills/imagepills.py
     setup.py
 source = 
-    imagepills
+    src
 
     
 [report]
