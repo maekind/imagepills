@@ -23,9 +23,8 @@ jobs:
       - name: Run lint with flake8 
         run: |
           # stop the build if there are Python syntax errors or undefined names
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          # exit with errors
-          flake8 . --count --max-complexity=11 --max-line-length=120 --statistics
+          # and exit with errors. flake configuration is in the repository
+          flake8 .
       - name: Install package
         run: |
           python setup.py develop

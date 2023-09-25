@@ -5,12 +5,6 @@
 import os
 import argparse
 
-__author__ = "Marco Espinosa"
-__email__ = "marco@marcoespinosa.es"
-__date__ = "20/06/2023"
-__version__ = "1.0"
-__type__ = "module"
-
 
 def walk(root) -> list:
     """Method to walk throught the given folder
