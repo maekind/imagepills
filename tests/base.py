@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 """This file contains the base classes for testing"""
-from os import path, mkdir
-from unittest import TestCase
-from io import StringIO
 import shutil
 import sys
+from io import StringIO
+from os import mkdir, path
+from unittest import TestCase
 
 
 class TestExecutionInfo:

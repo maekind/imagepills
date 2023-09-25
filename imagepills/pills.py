@@ -6,10 +6,9 @@
 import os
 import sys
 
-from PIL import Image
-from PIL import UnidentifiedImageError
-from imagepills import base
-from imagepills import utils
+from PIL import Image, UnidentifiedImageError
+
+from imagepills import base, utils
 
 __author__ = "Marco Espinosa"
 __email__ = "marco@marcoespinosa.es"

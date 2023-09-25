@@ -30,7 +30,7 @@ jobs:
           python setup.py develop
       - name: Test with pytest (with coverage)
         run: |
-          pytest tests -v --cov=./src/imagepills --cov-report=xml:./coverage.xml --cov-report term-missing
+          pytest tests -v --cov=./imagepills --cov-report=xml:./coverage.xml --cov-report term-missing
       - name: Upload code coverage
         uses: codecov/codecov-action@v3
         with:

@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """Utils library module"""
-import os
 import argparse
+import os
 
 
 def walk(root) -> list:
