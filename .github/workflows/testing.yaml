@@ -24,7 +24,7 @@ jobs:
         run: |
           # stop the build if there are Python syntax errors or undefined names
           # and exit with errors. flake configuration is in the repository
-          flake8 .
+          flake8 . --config .flake8
       - name: Install package
         run: |
           python setup.py develop
