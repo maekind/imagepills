@@ -121,10 +121,10 @@ class Convert2PNG(base.Pill):
 
         # Argument to provide an input folder path for recursively get the images.
         self.add_argument(
-            "-i",
-            "--input_folder",
-            help="Path to images folder",
-            dest="input_folder",
+            "-d",
+            "--directory",
+            help="Path to directory containing images",
+            dest="directory",
             metavar="STRING",
             required=False,
         )
@@ -132,9 +132,9 @@ class Convert2PNG(base.Pill):
         # Argument to provide an output folder for converted files.
         self.add_argument(
             "-o",
-            "--output_folder",
+            "--output",
             help="Path to ouput folder",
-            dest="output_folder",
+            dest="output_dir",
             metavar="STRING",
             required=True,
             type=utils.normalize_folder,
@@ -145,7 +145,7 @@ class Convert2PNG(base.Pill):
             "-f",
             "--file",
             help="file to convert",
-            dest="input_file",
+            dest="file",
             metavar="STRING",
             required=False,
         )
@@ -157,14 +157,14 @@ class Convert2PNG(base.Pill):
         successes = []
         errors = []
 
-        if self.args.input_folder:
-            filenames = utils.walk(self.args.input_folder)
+        if self.args.directory:
+            filenames = utils.walk(self.args.directory)
 
             for filename in sorted(filenames):
                 success, error = self.save_to_png(
-                    os.path.join(self.args.input_folder, filename),
+                    os.path.join(self.args.directory, filename),
                     filename,
-                    self.args.output_folder,
+                    self.args.output_dir,
                 )
                 # Save output:
                 if success:
@@ -172,9 +172,9 @@ class Convert2PNG(base.Pill):
                 if error:
                     errors.append(error)
 
-        elif self.args.input_file:
+        elif self.args.file:
             success, error = self.save_to_png(
-                self.args.input_file, self.args.input_file, self.args.output_folder
+                self.args.file, self.args.file, self.args.output_dir
             )
             # Save output:
             if success:
