@@ -1,6 +1,6 @@
 <!-- Logo -->
 <p align="center">
-  <a href="https://www.freepik.com/icon/pill_5419351"><img width="256" height="256" src="./logo.png"></a>
+  <a href="https://www.freepik.com/icon/pill_5419351"><img width="256" height="256" src="https://raw.githubusercontent.com/maekind/imagepills/main/logo.png"></a>
 </p>
 <!-- Shields -->
 <p align="center">
