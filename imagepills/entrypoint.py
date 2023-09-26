@@ -16,6 +16,6 @@ def entry_point_factory(entry_point_name):
     return entrypoint
 
 
-size = entry_point_factory("size")
-image2png = entry_point_factory("image2png")
-resize = entry_point_factory("resize")
+size = entry_point_factory("pills_size")
+image2png = entry_point_factory("pills_image2png")
+resize = entry_point_factory("pills_resize")
