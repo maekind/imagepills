@@ -75,7 +75,7 @@ class TestFilesInFolderConversion(Image2PngTestBase, BaseTest):
             "sys.argv",
             [
                 "pills_image2png",
-                "-i",
+                "-d",
                 file_path,
                 "-o",
                 path.join(self.execution_path, self.output_folder),

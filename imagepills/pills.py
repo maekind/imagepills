@@ -10,12 +10,6 @@ from PIL import Image, UnidentifiedImageError
 
 from imagepills import base, utils
 
-__author__ = "Marco Espinosa"
-__email__ = "marco@marcoespinosa.es"
-__date__ = "16/06/2023"
-__version__ = "1.0"
-__type__ = "module"
-
 
 class Size(base.Pill):
     """Class to handle image size calls"""
@@ -44,10 +38,10 @@ class Size(base.Pill):
 
         # Argument to provide an input folder path for recursively showing their sizes.
         self.add_argument(
-            "-i",
-            "--input_folder",
-            help="Path to images folder",
-            dest="input_folder",
+            "-d",
+            "--directory",
+            help="Path to directory containing images",
+            dest="directory",
             metavar="STRING",
             required=False,
         )
@@ -56,8 +50,8 @@ class Size(base.Pill):
         self.add_argument(
             "-f",
             "--file",
-            help="file path",
-            dest="input_file",
+            help="Image file path",
+            dest="file",
             metavar="STRING",
             required=False,
         )
@@ -65,22 +59,22 @@ class Size(base.Pill):
     def run(self):
         """Run method"""
 
-        if not self.args.input_folder and not self.args.input_file:
+        if not self.args.directory and not self.args.file:
             self.show_help()
             sys.exit(99)
 
         filenames = []
 
-        if self.args.input_folder:
-            filenames = utils.walk(self.args.input_folder)
-        elif self.args.input_file:
-            filenames.append(self.args.input_file)
+        if self.args.directory:
+            filenames = utils.walk(self.args.directory)
+        elif self.args.file:
+            filenames.append(self.args.file)
 
         for filename in sorted(filenames):
             try:
                 img = None
-                if self.args.input_folder:
-                    img = Image.open(os.path.join(self.args.input_folder, filename))
+                if self.args.directory:
+                    img = Image.open(os.path.join(self.args.directory, filename))
                 else:
                     img = Image.open(filename)
 
@@ -127,10 +121,10 @@ class Convert2PNG(base.Pill):
 
         # Argument to provide an input folder path for recursively get the images.
         self.add_argument(
-            "-i",
-            "--input_folder",
-            help="Path to images folder",
-            dest="input_folder",
+            "-d",
+            "--directory",
+            help="Path to directory containing images",
+            dest="directory",
             metavar="STRING",
             required=False,
         )
@@ -138,9 +132,9 @@ class Convert2PNG(base.Pill):
         # Argument to provide an output folder for converted files.
         self.add_argument(
             "-o",
-            "--output_folder",
+            "--output",
             help="Path to ouput folder",
-            dest="output_folder",
+            dest="output_dir",
             metavar="STRING",
             required=True,
             type=utils.normalize_folder,
@@ -150,8 +144,8 @@ class Convert2PNG(base.Pill):
         self.add_argument(
             "-f",
             "--file",
-            help="file to convert",
-            dest="input_file",
+            help="Image file to convert",
+            dest="file",
             metavar="STRING",
             required=False,
         )
@@ -163,14 +157,14 @@ class Convert2PNG(base.Pill):
         successes = []
         errors = []
 
-        if self.args.input_folder:
-            filenames = utils.walk(self.args.input_folder)
+        if self.args.directory:
+            filenames = utils.walk(self.args.directory)
 
             for filename in sorted(filenames):
                 success, error = self.save_to_png(
-                    os.path.join(self.args.input_folder, filename),
+                    os.path.join(self.args.directory, filename),
                     filename,
-                    self.args.output_folder,
+                    self.args.output_dir,
                 )
                 # Save output:
                 if success:
@@ -178,9 +172,9 @@ class Convert2PNG(base.Pill):
                 if error:
                     errors.append(error)
 
-        elif self.args.input_file:
+        elif self.args.file:
             success, error = self.save_to_png(
-                self.args.input_file, self.args.input_file, self.args.output_folder
+                self.args.file, self.args.file, self.args.output_dir
             )
             # Save output:
             if success:
@@ -247,9 +241,9 @@ class Resize(base.Pill):
         # Argument to provide an output folder for converted files.
         self.add_argument(
             "-o",
-            "--output_folder",
+            "--output",
             help="Path to ouput folder",
-            dest="output_folder",
+            dest="output_dir",
             metavar="STRING",
             required=True,
             type=utils.normalize_folder,
@@ -259,8 +253,8 @@ class Resize(base.Pill):
         self.add_argument(
             "-f",
             "--file",
-            help="file to convert",
-            dest="input_file",
+            help="Image file to convert",
+            dest="file",
             metavar="STRING",
             required=True,
         )
@@ -296,7 +290,7 @@ class Resize(base.Pill):
         errors = []
 
         # Open image
-        img = Image.open(self.args.input_file)
+        img = Image.open(self.args.file)
 
         # Get new sizes
         new_width = self.args.width
@@ -314,15 +308,15 @@ class Resize(base.Pill):
 
         img.save(
             os.path.join(
-                self.args.output_folder,
-                f"{os.path.basename(self.args.input_file).split('.')[0]}_{new_width}x{new_height}.png",
+                self.args.output_dir,
+                f"{os.path.basename(self.args.file).split('.')[0]}_{new_width}x{new_height}.png",
             )
         )
 
         successes.append(
             os.path.join(
-                self.args.output_folder,
-                f"{os.path.basename(self.args.input_file).split('.')[0]}_{new_width}x{new_height}.png",
+                self.args.output_dir,
+                f"{os.path.basename(self.args.file).split('.')[0]}_{new_width}x{new_height}.png",
             )
         )
 
