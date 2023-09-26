@@ -87,7 +87,7 @@ class TestFilesInFolderSize(BaseTest):
         # Mock arguments for size
         with mock.patch(
             "sys.argv",
-            ["pills_size", "-i", path.join(self.execution_path, "fixtures"), "-v"],
+            ["pills_size", "-d", path.join(self.execution_path, "fixtures"), "-v"],
         ):
             # Initialize test main class
             self.test_class = Size("size pill")

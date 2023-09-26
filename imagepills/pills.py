@@ -10,12 +10,6 @@ from PIL import Image, UnidentifiedImageError
 
 from imagepills import base, utils
 
-__author__ = "Marco Espinosa"
-__email__ = "marco@marcoespinosa.es"
-__date__ = "16/06/2023"
-__version__ = "1.0"
-__type__ = "module"
-
 
 class Size(base.Pill):
     """Class to handle image size calls"""
@@ -44,10 +38,10 @@ class Size(base.Pill):
 
         # Argument to provide an input folder path for recursively showing their sizes.
         self.add_argument(
-            "-i",
-            "--input_folder",
-            help="Path to images folder",
-            dest="input_folder",
+            "-d",
+            "--directory",
+            help="Path to directory containing images",
+            dest="directory",
             metavar="STRING",
             required=False,
         )
@@ -56,8 +50,8 @@ class Size(base.Pill):
         self.add_argument(
             "-f",
             "--file",
-            help="file path",
-            dest="input_file",
+            help="Image file path",
+            dest="file",
             metavar="STRING",
             required=False,
         )
@@ -65,22 +59,22 @@ class Size(base.Pill):
     def run(self):
         """Run method"""
 
-        if not self.args.input_folder and not self.args.input_file:
+        if not self.args.directory and not self.args.file:
             self.show_help()
             sys.exit(99)
 
         filenames = []
 
-        if self.args.input_folder:
-            filenames = utils.walk(self.args.input_folder)
-        elif self.args.input_file:
-            filenames.append(self.args.input_file)
+        if self.args.directory:
+            filenames = utils.walk(self.args.directory)
+        elif self.args.file:
+            filenames.append(self.args.file)
 
         for filename in sorted(filenames):
             try:
                 img = None
-                if self.args.input_folder:
-                    img = Image.open(os.path.join(self.args.input_folder, filename))
+                if self.args.directory:
+                    img = Image.open(os.path.join(self.args.directory, filename))
                 else:
                     img = Image.open(filename)
 
