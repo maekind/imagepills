@@ -144,7 +144,7 @@ class Convert2PNG(base.Pill):
         self.add_argument(
             "-f",
             "--file",
-            help="file to convert",
+            help="Image file to convert",
             dest="file",
             metavar="STRING",
             required=False,
@@ -241,9 +241,9 @@ class Resize(base.Pill):
         # Argument to provide an output folder for converted files.
         self.add_argument(
             "-o",
-            "--output_folder",
+            "--output",
             help="Path to ouput folder",
-            dest="output_folder",
+            dest="output_dir",
             metavar="STRING",
             required=True,
             type=utils.normalize_folder,
@@ -253,8 +253,8 @@ class Resize(base.Pill):
         self.add_argument(
             "-f",
             "--file",
-            help="file to convert",
-            dest="input_file",
+            help="Image file to convert",
+            dest="file",
             metavar="STRING",
             required=True,
         )
@@ -290,7 +290,7 @@ class Resize(base.Pill):
         errors = []
 
         # Open image
-        img = Image.open(self.args.input_file)
+        img = Image.open(self.args.file)
 
         # Get new sizes
         new_width = self.args.width
@@ -308,15 +308,15 @@ class Resize(base.Pill):
 
         img.save(
             os.path.join(
-                self.args.output_folder,
-                f"{os.path.basename(self.args.input_file).split('.')[0]}_{new_width}x{new_height}.png",
+                self.args.output_dir,
+                f"{os.path.basename(self.args.file).split('.')[0]}_{new_width}x{new_height}.png",
             )
         )
 
         successes.append(
             os.path.join(
-                self.args.output_folder,
-                f"{os.path.basename(self.args.input_file).split('.')[0]}_{new_width}x{new_height}.png",
+                self.args.output_dir,
+                f"{os.path.basename(self.args.file).split('.')[0]}_{new_width}x{new_height}.png",
             )
         )
 
