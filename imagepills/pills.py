@@ -242,7 +242,7 @@ class Resize(base.Pill):
         self.add_argument(
             "-o",
             "--output",
-            help="Path to ouput folder",
+            help="Path to output folder",
             dest="output_dir",
             metavar="STRING",
             required=True,
