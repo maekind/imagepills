@@ -1,22 +1,22 @@
 <!-- Logo -->
 <p align="center">
-  <img width="256" height="256" src="./logo.png">
+  <a href="https://www.freepik.com/icon/pill_5419351"><img width="256" height="256" src="./logo.png"></a>
 </p>
 <!-- Shields -->
 <p align="center">
 <a href="https://github.com/maekind/imagepills"><img src="https://img.shields.io/github/actions/workflow/status/maekind/imagepills/.github%2Fworkflows%2Ftesting.yaml?label=tests&color=green" hspace="5"></a>
 <a href="https://codecov.io/gh/maekind/imagepills"><img src="https://codecov.io/gh/maekind/imagepills/branch/main/graph/badge.svg?token=L8IS93O0XV" hspace="5"></a>
 <a href="https://github.com/maekind/imagepills/releases"><img src="https://img.shields.io/github/actions/workflow/status/maekind/imagepills/.github%2Fworkflows%2Frelease.yaml?label=package&color=green" hspace="5"></a>
-<a href="https://github.com/maekind/imagepills/releases"><img src="https://img.shields.io/github/v/release/maekind/imagepills?color=cyan" hspace="5"></a>
+<a href="https://pypi.org/project/imagepills"><img src="https://img.shields.io/github/v/release/maekind/imagepills?color=blue&label=pypi latest" hspace="5"></a>
 <br>
 <a href="https://github.com/maekind/imagepills/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-orange.svg" hspace="5"></a>
-<a href="https://github.com/maekind/imagepills"><img src="https://img.shields.io/github/repo-size/maekind/imagepills" hspace="5"></a>
+<a href="https://github.com/maekind/imagepills"><img src="https://img.shields.io/github/repo-size/maekind/imagepills?color=red" hspace="5"></a>
 <a href="https://github.com/maekind/imagepills"><img src="https://img.shields.io/github/last-commit/maekind/imagepills?color=black" hspace="5"></a>
 <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/github/languages/top/maekind/imagepills?color=darkgreen" hspace="5"></a>
 <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python%20version-%3E3.9-lightblue" hspace="5"></a>
 </p>
 
-# IMAGEPILLS
+<h1 align="center">IMAGEPILLS</h1>
 
 ## Description
 
